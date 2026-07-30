@@ -1,7 +1,10 @@
 #[cfg(not(esp_idf_bt_controller_only))]
 compile_error!("the `trouble` feature requires CONFIG_BT_CONTROLLER_ONLY=y");
 
-#[cfg(not(esp_idf_bt_le_hci_interface_use_ram))]
+#[cfg(all(
+    any(esp32c2, esp32c5, esp32c6, esp32h2),
+    not(esp_idf_bt_le_hci_interface_use_ram)
+))]
 compile_error!("the `trouble` feature requires CONFIG_BT_LE_HCI_INTERFACE_USE_RAM=y");
 
 use core::cell::RefCell;
@@ -166,8 +169,7 @@ impl fmt::Display for TransportError {
     }
 }
 
-#[cfg(feature = "std")]
-impl std::error::Error for TransportError {}
+impl core::error::Error for TransportError {}
 
 impl embedded_io::Error for TransportError {
     fn kind(&self) -> ErrorKind {

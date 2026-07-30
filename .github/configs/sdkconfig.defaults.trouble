@@ -1,0 +1,15 @@
+# Trouble uses ESP-IDF's Bluetooth controller without Bluedroid or NimBLE.
+CONFIG_BT_ENABLED=y
+CONFIG_BT_CONTROLLER_ONLY=y
+CONFIG_BT_CONTROLLER_ENABLED=y
+
+# Required on chips that let the application select the controller HCI
+# interface. Other chips use VHCI for controller-only mode automatically.
+CONFIG_BT_LE_HCI_INTERFACE_USE_RAM=y
+
+# Trouble reads into a 259-byte HCI buffer. An ACL payload of 251 bytes occupies
+# 256 bytes with the ACL header and H4 packet indicator.
+CONFIG_BT_LE_ACL_BUF_SIZE=251
+
+# The Trouble runner and host resources exceed ESP-IDF's default main-task stack.
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=32768

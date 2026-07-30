@@ -7,15 +7,16 @@
 //! esp-idf-svc = { version = "0.52", features = ["trouble"] }
 //! ```
 //!
-//! The application must select the controller-only RAM HCI interface in
-//! `sdkconfig.defaults`:
+//! The application must select controller-only mode in `sdkconfig.defaults`:
 //!
 //! ```text
 //! CONFIG_BT_ENABLED=y
 //! CONFIG_BT_CONTROLLER_ONLY=y
 //! CONFIG_BT_CONTROLLER_ENABLED=y
-//! CONFIG_BT_LE_HCI_INTERFACE_USE_RAM=y
 //! ```
+//!
+//! On targets that offer a choice of controller HCI interfaces, also set
+//! `CONFIG_BT_LE_HCI_INTERFACE_USE_RAM=y`.
 use core::marker::PhantomData;
 
 use crate::hal::modem::BluetoothModemPeripheral;

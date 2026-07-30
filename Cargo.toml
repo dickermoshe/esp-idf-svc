@@ -74,11 +74,13 @@ embuild = "0.33.3"
 
 [dev-dependencies]
 anyhow = "1"
+embassy-time = { version = "0.5", features = ["generic-queue-16"] }
 esp-idf-sys = { version = "0.37.1", features = ["binstart"] }
 futures = "0.3"
 serde = { version = "1", default-features = false, features = ["derive"] }
 serde_json = { version = "1", default-features = false, features = ["alloc"] }
 postcard = "1"
+trouble-host = { version = "0.7", features = ["log"] }
 # `async-io-mini` is a fork of `async-io` optimized for ESP-IDF: much smaller
 # RAM footprint (no large reactor thread stack, no per-fd heap bookkeeping)
 async-io = { version = "0.4", package = "async-io-mini", default-features = false, features = ["futures-io"] }
