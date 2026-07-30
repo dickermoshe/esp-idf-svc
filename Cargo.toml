@@ -26,6 +26,14 @@ embassy-time-driver = ["dep:embassy-time-driver", "embassy-time-queue-utils"]
 alloc = ["esp-idf-hal/alloc", "embedded-svc/alloc", "uncased/alloc"]
 nightly = ["embedded-svc/nightly", "esp-idf-hal/nightly"]
 experimental = ["embedded-svc/experimental", "esp-idf-hal/experimental"]
+trouble = [
+    "alloc",
+    "dep:bt-hci",
+    "dep:embassy-sync",
+    "dep:embedded-io",
+    "critical-section",
+    "embassy-sync",
+]
 
 # Propagated esp-idf-hal features
 critical-section = ["esp-idf-hal/critical-section"]
@@ -57,6 +65,9 @@ embassy-time-queue-utils = { version = "0.3", optional = true }
 embassy-futures = "0.1.2"
 embedded-storage = { version = "0.3", optional = true }
 futures-io = { version = "0.3", optional = true }
+bt-hci = { version = "0.9", optional = true, default-features = false }
+embassy-sync = { version = "0.7", optional = true }
+embedded-io = { version = "0.7", optional = true }
 
 [build-dependencies]
 embuild = "0.33.3"

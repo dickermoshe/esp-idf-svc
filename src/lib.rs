@@ -9,6 +9,7 @@
 //! - `std`: Enable the use of std. Enabled by default.
 //! - `experimental`: Enable the use of experimental features.
 //! - `embassy-time-driver`: Implement an embassy time driver.
+//! - `trouble`: Expose a `bt-hci` transport over ESP-IDF VHCI for use with Trouble.
 #![no_std]
 #![allow(async_fn_in_trait)]
 #![allow(unknown_lints)]
@@ -40,6 +41,8 @@ pub mod ble;
     feature = "alloc",
 ))]
 pub mod bt;
+#[cfg(all(not(any(esp32s2, esp32p4)), esp_idf_bt_enabled, feature = "trouble",))]
+pub mod bt_controller;
 #[cfg(all(
     feature = "alloc",
     any(
