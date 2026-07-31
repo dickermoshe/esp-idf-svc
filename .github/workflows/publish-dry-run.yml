@@ -3,7 +3,9 @@ name: PublishDryRun
 on: workflow_dispatch
 
 env:
-  rust_toolchain: nightly
+  # Temporary workaround for rust-lang/rust#158168. Remove after the fix reaches nightly:
+  # https://github.com/rust-lang/rust/pull/160170
+  rust_toolchain: nightly-2026-07-29
 
 jobs:
   publishdryrun:
